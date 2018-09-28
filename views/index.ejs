@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="https://js.stripe.com/v3/"></script>
+
+  </head>
+  <body>
+    <form action="/charge" method="post" id="payment-form">
+      <div class="form-row">
+        <label> 가격 </label>
+        $ <input
+        style="width:50%; padding: 10px 12px; margin: 5px 0;"
+        type="number" min="0.00" max="10000.00" step="0.01"
+        placeholder="소수점 2째 짜리까지(ex.$9.99)" pattern="^\d+(?:\.\d{1,2})?$"/>
+        <!-- <label for="card-element">
+          Credit or debit card
+        </label> -->
+        <div id="card-element">
+          <!-- A Stripe Element will be inserted here. -->
+        </div>
+
+        <!-- Used to display form errors. -->
+        <div id="card-errors" role="alert"></div>
+      </div>
+      <button>결제하기</button>
+    </form>
+
+  </body>
+  <% if( message ) {
+  %>
+    <script type="text/javascript">
+      alert('<%=message %>');
+    </script>
+  <%
+  }
+  %>
+
+  <script type="text/javascript" src="/javascripts/stripe-sample.js"></script>
+</html>
